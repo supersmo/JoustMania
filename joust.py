@@ -85,7 +85,8 @@ def track_move(move, game_mode, team, team_color_enum, dead_move, force_color, \
             else:
                 if sum(force_color) == 30:
                     if werewolf:
-                        move.set_leds(*colors.Colors.Blue40.value)
+#                        move.set_leds(*colors.Colors.Blue40.value)
+                        move.set_leds(*colors.Colors.Red.value)
                     else:
                         move.set_leds(*colors.Colors.Black.value)
                 move.set_rumble(0)
@@ -120,9 +121,11 @@ def track_move(move, game_mode, team, team_color_enum, dead_move, force_color, \
                     else:
                         if game_mode == common.Games.WereJoust.value:
                             if werewolf_reveal.value == 2 and werewolf:
-                                move.set_leds(*colors.Colors.Blue40.value)
+#                                move.set_leds(*colors.Colors.Blue40.value)
+                                move.set_leds(*colors.Colors.Red.value)
                             else:
-                                move.set_leds(*colors.Colors.White40.value)
+#                                move.set_leds(*colors.Colors.White40.value)
+                                move.set_leds(*colors.Colors.Blue40.value)
                         else:
                             move.set_leds(*my_team_colors)
                     if time.time() < vibration_time-0.25:
@@ -135,9 +138,11 @@ def track_move(move, game_mode, team, team_color_enum, dead_move, force_color, \
                 else:
                     if game_mode == common.Games.WereJoust.value:
                         if werewolf_reveal.value == 2 and werewolf:
-                            move.set_leds(*colors.Colors.Blue40.value)
+#                            move.set_leds(*colors.Colors.Blue40.value)
+                            move.set_leds(*colors.Colors.Red.value)
                         else:
-                            move.set_leds(*colors.Colors.White40.value)
+#                            move.set_leds(*colors.Colors.White40.value)
+                            move.set_leds(*colors.Colors.Blue40.value)
                     else:
                         move.set_leds(*my_team_colors)
                     #move.set_rumble(0)
@@ -147,9 +152,12 @@ def track_move(move, game_mode, team, team_color_enum, dead_move, force_color, \
                     if time.time() > no_rumble:
                         dead_invince.value = True
                         if red_on_kill:
-                            move.set_leds(*colors.Colors.Red.value)
+#                            move.set_leds(*colors.Colors.Red.value)
+                            move.set_leds(*colors.Colors.Black.value)
+                            print("red on kill was True")
                         else:
                             move.set_leds(*colors.Colors.Black.value)
+                            print("red on kill was False")
                         move.set_rumble(90)
                         dead_move.value = 0
                         move.update_leds()
