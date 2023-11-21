@@ -21,6 +21,7 @@ Cool Stuffs!
 * 18+ Player support
 * Super easy setup
 * Runs in Headless mode, no screen required
+* Audio is output directly through the headphone jack, no audio device/usb plugin is necessary.
 * Optional web interface, view status and change game settings with your phone
 * Custom music support, play with your own music
 * Convention mode, no manual instructions needed, the game plays itself and switches between game modes
@@ -50,7 +51,7 @@ This will allow you to charge 9 controllers at once through the pi
 Installation
 ---------------------------
 
-0. [Download](https://www.raspberrypi.org/downloads/raspbian/) and [Install](https://www.raspberrypi.org/documentation/installation/installing-images/README.md) Raspbian on the micro SD card, this build was tested on the latest version of the raspberry pi OS, 32 or 64 bit.
+0. [Download](https://www.raspberrypi.org/downloads/raspbian/) and [Install](https://www.raspberrypi.org/documentation/installation/installing-images/README.md) Raspbian on the micro SD card, this build was tested on the latest version of the raspberry pi OS, 32 or 64 bit. If you would like to try installing on [Debian](https://raspi.debian.net/) there are some extra [instructions here](https://github.com/adangert/JoustMania/wiki/Debian-Instructions) that could help.
 0. Connect the bluetooth adapters and speaker
 0. Turn on the pi, open a Terminal and run these commands, the pi will reboot on a successful install
 0. If something goes wrong during instillation, try running setup.sh again.
@@ -95,7 +96,7 @@ How to start a game
 * When a player presses the trigger button their controller will turn white
 * Once all controllers are white the game will begin!
 
-Admin Mode (Sensitivity and convention mode settings)
+Admin Mode: Joustmania settings
 ---------------------------------
 You can become an Admin by pressing all four front buttons on any controller, this will allow you to modify the games settings from the four front buttons on the controller, After a game is played the Admin mode will be reset
 
@@ -105,6 +106,8 @@ You can become an Admin by pressing all four front buttons on any controller, th
 * (Triangle) show battery level on all controllers (full charge is Green, 80% is Turquoise, 60% is Blue, 40% is Yellow, under 40% is Red)
 * The middle button can also be used to rotate through different options, then the start and select buttons can be used to increase and decrease that amount, currently this will allow you to change the amount of teams for random team mode, and whether force start works with every controller or only players who pushed the trigger button.
 * Holding down the trigger button for two seconds in admin mode will force start the game.
+
+For further settings such as turning off audio (play_audio) or changing the colors of controllers please edit the joustsettings.yaml file in the Joustmania folder.
 
 Web Interface
 ---------------------------------
@@ -221,3 +224,5 @@ Support and funding
 --------------------------
 If you love this game you can support its development by helping out with my patreon here:
 https://www.patreon.com/adangert
+
+We also have some great [contributors](CONTRIBUTORS.md) if you would you like to help out with development, or find any bug fixes we would be happy to test them out and incorperate them into the repo!

@@ -22,10 +22,10 @@ setup() {
         libportmidi-dev portaudio19-dev \
         libsdl-image1.2-dev libsdl-ttf2.0-dev \
         libblas-dev liblapack-dev \
-        bluez bluez-tools rfkill supervisor cmake ffmpeg \
+        bluez bluez-tools iptables rfkill supervisor cmake ffmpeg \
         libudev-dev swig libbluetooth-dev \
         alsa-utils alsa-tools libasound2-dev libsdl2-mixer-2.0-0 \
-        python-dbus-dev libdbus-glib-1-dev espeak libatlas-base-dev || exit -1
+        python-dbus-dev python3-dbus libdbus-glib-1-dev usbutils espeak libatlas-base-dev || exit -1
 
     espeak "Installing PS move A.P.I. software updates"
     #install components for psmoveapi
@@ -51,7 +51,11 @@ setup() {
     /usr/bin/python3 -m virtualenv --system-site-packages $VENV || exit -1
     PYTHON=$VENV/bin/python3
     espeak "installing virtual environment dependencies"
-    $PYTHON -m pip install --ignore-installed psutil flask Flask-WTF pyalsaaudio pydub pygame==2.3.0 pyaudio pyyaml dbus-python || exit -1
+
+    $PYTHON -m pip install --ignore-installed psutil flask Flask-WTF pyalsaaudio pydub pyaudio pyyaml dbus-python || exit -1
+    #Sometimes pygame tries to install without a whl, and fails (like 2.4.0) this
+    #checks that only correct versions will install
+    $PYTHON -m pip install --ignore-installed --only-binary ":all:" pygame || exit -1
 
     espeak "downloading PS move API"
     #install psmoveapi (currently adangert's for opencv 3 support)
@@ -90,7 +94,7 @@ setup() {
     #This will allow only class one long range btdongles to connect to psmove controllers
     if [ "$1" = "--disable_internal_bt" ]; then
 	echo "disabling internal bt"
-        sudo grep -qxF 'dtoverlay=pi3-disable-bt' /boot/config.txt || { echo "dtoverlay=pi3-disable-bt" | sudo tee -a /boot/config.txt; sudo rm -rf /var/lib/bluetooth/*; }
+        sudo grep -qxF 'dtoverlay=disable-bt' /boot/config.txt || { echo "dtoverlay=disable-bt" | sudo tee -a /boot/config.txt; sudo rm -rf /var/lib/bluetooth/*; }
         sudo systemctl disable hciuart || exit -1
     fi
 
